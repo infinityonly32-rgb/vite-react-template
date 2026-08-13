@@ -9,15 +9,15 @@ function App() {
       <header>
         <div>
           <h1>OFICINA CENTRAL</h1>
-          <span>Recursos Humanos</span>
+          <span>Sistema de Gestión Interna</span>
         </div>
         <div className="status">● Sistema activo</div>
       </header>
 
       <main>
         <section className="hero">
-          <p className="label">PORTAL DEL COLABORADOR</p>
-          <h2>Recursos Humanos</h2>
+          <p className="label">PLATAFORMA INTERNA</p>
+          <h2>Oficina Central</h2>
           <p>Consulta rápida de documentos del personal.</p>
         </section>
 
