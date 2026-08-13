@@ -18,7 +18,7 @@ function App() {
         <section className="hero">
           <p className="label">PLATAFORMA INTERNA</p>
           <h2>Oficina Central</h2>
-          <p>Consulta rápida de documentos del personal.</p>
+          <p>Acceso centralizado a los módulos de gestión interna.</p>
         </section>
 
         <section className="search">
@@ -57,7 +57,7 @@ function App() {
         </section>
       </main>
 
-      <footer>COIN · Gestión de Recursos Humanos</footer>
+      <footer>OFICINA CENTRAL · Sistema de Gestión Interna</footer>
     </div>
   );
 }
