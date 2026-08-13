@@ -8,7 +8,7 @@ function App() {
     <div className="coin">
       <header>
         <div>
-          <h1>COIN</h1>
+          <h1>OFICINA CENTRAL</h1>
           <span>Recursos Humanos</span>
         </div>
         <div className="status">● Sistema activo</div>
