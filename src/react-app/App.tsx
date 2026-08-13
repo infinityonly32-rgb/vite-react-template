@@ -1,66 +1,65 @@
-// src/App.tsx
-
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
-import honoLogo from "./assets/hono.svg";
 import "./App.css";
 
 function App() {
-	const [count, setCount] = useState(0);
-	const [name, setName] = useState("unknown");
+  const [dni, setDni] = useState("");
 
-	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-				<a href="https://hono.dev/" target="_blank">
-					<img src={honoLogo} className="logo cloudflare" alt="Hono logo" />
-				</a>
-				<a href="https://workers.cloudflare.com/" target="_blank">
-					<img
-						src={cloudflareLogo}
-						className="logo cloudflare"
-						alt="Cloudflare logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React + Hono + Cloudflare</h1>
-			<div className="card">
-				<button
-					onClick={() => setCount((count) => count + 1)}
-					aria-label="increment"
-				>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<div className="card">
-				<button
-					onClick={() => {
-						fetch("/api/")
-							.then((res) => res.json() as Promise<{ name: string }>)
-							.then((data) => setName(data.name));
-					}}
-					aria-label="get name"
-				>
-					Name from API is: {name}
-				</button>
-				<p>
-					Edit <code>worker/index.ts</code> to change the name
-				</p>
-			</div>
-			<p className="read-the-docs">Click on the logos to learn more</p>
-		</>
-	);
+  return (
+    <div className="coin">
+      <header>
+        <div>
+          <h1>COIN</h1>
+          <span>Recursos Humanos</span>
+        </div>
+        <div className="status">● Sistema activo</div>
+      </header>
+
+      <main>
+        <section className="hero">
+          <p className="label">PORTAL DEL COLABORADOR</p>
+          <h2>Recursos Humanos</h2>
+          <p>Consulta rápida de documentos del personal.</p>
+        </section>
+
+        <section className="search">
+          <label>Documento de identidad</label>
+
+          <div className="searchRow">
+            <input
+              type="text"
+              placeholder="Ingrese DNI"
+              value={dni}
+              onChange={(e) => setDni(e.target.value)}
+              maxLength={8}
+            />
+            <button>Buscar</button>
+          </div>
+        </section>
+
+        <section className="options">
+          <div className="card">
+            <div className="icon">ID</div>
+            <div>
+              <h3>DNI</h3>
+              <p>Consultar información del colaborador</p>
+            </div>
+            <span>→</span>
+          </div>
+
+          <div className="card">
+            <div className="icon">S/</div>
+            <div>
+              <h3>Boletas de pago</h3>
+              <p>Consultar y descargar boletas</p>
+            </div>
+            <span>→</span>
+          </div>
+        </section>
+      </main>
+
+      <footer>COIN · Gestión de Recursos Humanos</footer>
+    </div>
+  );
 }
 
 export default App;
