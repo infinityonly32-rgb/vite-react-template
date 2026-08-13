@@ -2,7 +2,10 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [modulo, setModulo] = useState<"inicio" | "rrhh" | "logistica">("inicio");
+  const [modulo, setModulo] = useState<
+    "inicio" | "rrhh" | "logistica" | "cobranzas"
+  >("inicio");
+
   const [dni, setDni] = useState("");
 
   return (
@@ -12,6 +15,7 @@ function App() {
           <h1>OFICINA CENTRAL</h1>
           <span>Sistema de Gestión Interna</span>
         </div>
+
         <div className="status">● Sistema activo</div>
       </header>
 
@@ -42,6 +46,15 @@ function App() {
                 </div>
                 <span>→</span>
               </div>
+
+              <div className="card" onClick={() => setModulo("cobranzas")}>
+                <div className="icon">CB</div>
+                <div>
+                  <h3>Cobranzas</h3>
+                  <p>Seguimiento de pagos, pendientes y cobranzas</p>
+                </div>
+                <span>→</span>
+              </div>
             </section>
           </>
         )}
@@ -69,6 +82,7 @@ function App() {
                   onChange={(e) => setDni(e.target.value)}
                   maxLength={8}
                 />
+
                 <button>Buscar</button>
               </div>
             </section>
@@ -122,6 +136,49 @@ function App() {
                 <div>
                   <h3>Proveedores</h3>
                   <p>Consulta y gestión de proveedores</p>
+                </div>
+                <span>→</span>
+              </div>
+            </section>
+          </>
+        )}
+
+        {modulo === "cobranzas" && (
+          <>
+            <button className="back" onClick={() => setModulo("inicio")}>
+              ← Volver
+            </button>
+
+            <section className="hero">
+              <p className="label">MÓDULO</p>
+              <h2>Cobranzas</h2>
+              <p>Seguimiento de pagos y estados de cobranza.</p>
+            </section>
+
+            <section className="options">
+              <div className="card">
+                <div className="icon">PC</div>
+                <div>
+                  <h3>Pendientes de cobro</h3>
+                  <p>Facturas, valorizaciones y pagos pendientes</p>
+                </div>
+                <span>→</span>
+              </div>
+
+              <div className="card">
+                <div className="icon">HP</div>
+                <div>
+                  <h3>Historial de pagos</h3>
+                  <p>Consulta de pagos y cobranzas registradas</p>
+                </div>
+                <span>→</span>
+              </div>
+
+              <div className="card">
+                <div className="icon">ES</div>
+                <div>
+                  <h3>Estado de cobranza</h3>
+                  <p>Seguimiento del estado de cada cobro</p>
                 </div>
                 <span>→</span>
               </div>
