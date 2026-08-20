@@ -1,6 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
-
+import { createClient } from "@supabase/supabase-js";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 type Modulo = "inicio" | "rrhh" | "logistica" | "cobranzas";
 
 type Trabajador = {
@@ -10,46 +13,32 @@ type Trabajador = {
   categoria: string;
 };
 
-const trabajadores: Trabajador[] = [
-  {
-    numero: 24,
-    nombre: "MAMANI CAMA EDWIN FREDY",
-    dni: "43027725",
-    categoria: "PEON",
-  },
-  {
-    numero: 25,
-    nombre: "CONDORI PAXI CESAR",
-    dni: "40291796",
-    categoria: "OPERARIO",
-  },
-  {
-    numero: 26,
-    nombre: "CAUNA NINAJA EDUARDO",
-    dni: "48447817",
-    categoria: "PEON",
-  },
-  {
-    numero: 27,
-    nombre: "COLQUE MAMANI EDWIN",
-    dni: "00513123",
-    categoria: "OPERARIO",
-  },
-  {
-    numero: 28,
-    nombre: "ANAHUA QUISPE MARTIN",
-    dni: "01869121",
-    categoria: "OPERARIO",
-  },
-  {
-    numero: 29,
-    nombre: "CAMA ANCCO JAVIER SANTOS",
-    dni: "00522213",
-    categoria: "PEON",
-  },
-];
-
 function App() {
+  const [trabajadores, setTrabajadores] = useState<Trabajador[]>([]);
+  useEffect(() => {
+  async function cargarTrabajadores() {
+    const { data, error } = await supabase
+      .from("trabajadores")
+      .select("id, nombre_completo, dni, categoria")
+      .order("id", { ascending: true });
+
+    if (error) {
+      console.error("Error al cargar trabajadores:", error);
+      return;
+    }
+
+    const trabajadoresAdaptados: Trabajador[] = (data ?? []).map((t) => ({
+      numero: t.id,
+      nombre: t.nombre_completo,
+      dni: t.dni,
+      categoria: t.categoria,
+    }));
+
+    setTrabajadores(trabajadoresAdaptados);
+  }
+
+  cargarTrabajadores();
+}, []);
   const [modulo, setModulo] = useState<Modulo>("inicio");
   const [busqueda, setBusqueda] = useState("");
   const [categoria, setCategoria] = useState("TODAS");
